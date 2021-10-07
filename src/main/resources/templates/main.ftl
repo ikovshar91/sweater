@@ -1,38 +1,56 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/login.ftl" as l>
+
 
 <@c.page>
-<div>
-    <@l.logout />
-    <span><a href="/user">User list</a></span>
+<div class="form-row">
+        <form method="get" action="/main" class="row g-3">
+            <div class="col-auto">
+            <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by tag">
+            </div>
+            <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            <div></div>
+        </form>
 </div>
-<div>
+
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add new message
+</button>
+
+
+<div class="collapse mt-3" id="collapseExample">
     <form method="post" enctype="multipart/form-data">
-        <input type="text" name="text" placeholder="Введите сообщение" />
-        <input type="text" name="tag" placeholder="Тэг">
-        <input type="file" name="file">
+        <div class="mb-3">
+        <input type="text" name="text" class="form-control" placeholder="Введите сообщение" />
+        </div>
+        <div class="mb-3">
+        <input type="text" name="tag" class="form-control" placeholder="Тэг">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="file" id="formFile">
+        </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit">Добавить</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 </div>
-<div>Список сообщений</div>
-<form method="get" action="/main">
-    <input type="text" name="filter" value="${filter?ifExists}">
-    <button type="submit">Найти</button>
-</form>
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
 <#list messages as message>
-<div>
-    <b>${message.id}</b>
+        <div class="card h-100">
+        <#if message.filename??>
+        <img src="/img/${message.filename}" class="card-img-top">
+    </#if>
+<div class="card-body">
     <span>${message.text}</span>
     <i>${message.tag}</i>
-    <strong>${message.authorName}</strong>
-    <div>
-        <#if message.filename??>
-        <img src="/img/${message.filename}">
-    </#if>
 </div>
+ <div class="card-footer text-muted">
+    ${message.authorName}
+ </div>
 </div>
+
 <#else>
 No message
 </#list>
+</div>
 </@c.page>
