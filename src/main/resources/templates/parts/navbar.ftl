@@ -1,8 +1,5 @@
 <#include "security.ftl">
-<<<<<<< HEAD
 <#import "login.ftl" as l>
-=======
->>>>>>> origin/master
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -18,20 +15,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/main">Messages</a>
 
-                <#if isAdmin>
+                    <#if isAdmin>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/user">User list</a>
                 </li>
-                </#if>
+            </#if>
             </ul>
-<<<<<<< HEAD
-            <div class="navbar-text px-3">${name}</div>
 
-            <#if name !="unknown"><@l.logout/></#if>
-=======
-
-            <div class="navbar-text">${name}</div>
->>>>>>> origin/master
+            <div class="navbar-text me-3">${name}</div>
+            <@l.logout />
         </div>
     </div>
 </nav>
