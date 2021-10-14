@@ -23,7 +23,7 @@
             </ul>
 
             <div class="navbar-text me-3">${name}</div>
-            <@l.logout />
+            <#if name !="unknown"><@l.logout/></#if>
         </div>
     </div>
 </nav>

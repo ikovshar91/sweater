@@ -1,5 +1,5 @@
 package com.example.sweater.config;
-/*
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,8 +43,8 @@ public class MailConfig {
 
         properties.setProperty("mail.transport.protocol",protocol);
         properties.setProperty("mail.debug",debug);
+        properties.setProperty("mail.smtp.ssl.enable", "true");
 
         return mailSender;
     }
 }
-*/
